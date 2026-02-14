@@ -1,3 +1,5 @@
 <template>
-  <div>Test vercel deploy 2</div>
+  <div>
+    <Header />
+  </div>
 </template>
