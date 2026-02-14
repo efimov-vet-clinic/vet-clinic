@@ -1,0 +1,53 @@
+name: Deploy Nuxt App to Production
+
+# Триггеры: когда запускается
+on:
+  push:
+    branches: [main] # Только при пуше в main
+  workflow_dispatch: # Возможность запуска вручную
+
+# Что делаем
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Vercel
+
+    steps:
+      # 1. Забираем код из репозитория
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Устанавливаем Node.js (нужен для Nuxt)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm" # Кэшируем зависимости для скорости
+
+      # 3. Устанавливаем зависимости
+      - name: Install dependencies
+        run: npm ci # ci быстрее и надежнее, чем install
+
+      # 4. Запускаем тесты (если они есть)
+      - name: Run tests
+        run: |
+          npm run lint  # если есть линтер
+          npm run test  # если есть тесты
+        continue-on-error: true # Не останавливаем пайплайн если тестов нет
+
+      # 5. Собираем проект
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          # Если у тебя есть переменные окружения, добавь их сюда
+          # API_URL: ${{ secrets.API_URL }}
+
+      # 6. Деплоим на Vercel
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: "--prod" # Деплоим в продакшен
