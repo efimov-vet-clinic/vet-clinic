@@ -1,83 +1,105 @@
-// server/api/yandex-form-webhook.post.js
+// server/api/yandex-form-webhook.ts
 
 import { User } from "../interfaces/user.interface";
 
 export default defineEventHandler(async (event) => {
   try {
-    const formData = await readBody(event);
+    // Получаем данные из формы (они приходят в JSON-RPC формате)
+    const body = await readBody(event);
 
-    console.log("Получены данные из Яндекс Формы:", formData);
+    console.log(
+      "Получен запрос от Яндекс Формы:",
+      JSON.stringify(body, null, 2)
+    );
 
-    const result = await sendToTelegram(formData);
+    // Извлекаем данные ответа из правильной структуры
+    const answerData = body.answer?.data;
 
-    return {
-      success: true,
-      message: "Данные успешно отправлены в Telegram",
-      data: result,
+    if (!answerData) {
+      throw new Error("Некорректный формат данных от Яндекс Формы");
+    }
+
+    // Форматируем данные для Telegram
+    const formData: User = {
+      // Извлекаем значения из сложной структуры
+      pet_name:
+        answerData.pet_name?.value ||
+        answerData.user_name?.value ||
+        "Не указано",
+
+      pet_type:
+        answerData.pet_type?.value?.[0]?.text ||
+        answerData.pet_type?.text ||
+        "Не указан",
+
+      phone_number: answerData.phone?.value || "Не указан",
+
+      email: answerData.email?.value || "Не указан",
+      user_name: answerData.user_name?.value || "Не указано",
     };
-  } catch (error: any) {
-    console.error("Ошибка:", error);
 
-    return {
-      success: false,
-      error: error.message,
-    };
-  }
-});
+    const config = useRuntimeConfig();
 
-async function sendToTelegram(data: User) {
-  const config = useRuntimeConfig();
-  const TELEGRAM_TOKEN = config.telegrambottoken;
-  const TELEGRAM_CHAT_ID = config.telegramchatid;
+    const message = formatTelegramMessage(formData);
 
-  const message = formatTelegramMessage(data);
+    const telegramUrl = `https://api.telegram.org/bot${config.telegrambottoken}/sendMessage`;
 
-  const response = await fetch(
-    `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`,
-    {
+    const response = await fetch(telegramUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
+        chat_id: config.telegramchatid,
         text: message,
         parse_mode: "HTML",
       }),
+    });
+
+    const result = await response.json();
+
+    if (!result.ok) {
+      throw new Error(result.description);
     }
-  );
 
-  const result = await response.json();
+    return {
+      jsonrpc: "2.0",
+      result: {
+        success: true,
+        message: "Уведомление отправлено",
+      },
+      id: body.id || null,
+    };
+  } catch (error: any) {
+    console.error("Ошибка обработки:", error);
 
-  if (!result.ok) {
-    throw new Error(result.description);
+    // Возвращаем ошибку в формате JSON-RPC
+    return {
+      jsonrpc: "2.0",
+      error: {
+        code: -32603,
+        message: error.message,
+      },
+      id: null,
+    };
   }
-
-  return result;
-}
+});
 
 function formatTelegramMessage(data: User) {
-  const petName = data.pet_name;
-  const phone = data.phone_number;
-  const petType = data.pet_type;
-  const email = data.email;
-  const userName = data.user_name;
-
   return `
-  🐾 <b>НОВАЯ ЗАПИСЬ В КЛИНИКУ</b> 🐾
+🐾 <b>НОВАЯ ЗАПИСЬ В КЛИНИКУ</b> 🐾
 
-  📋 <b>Информация о владельце:</b>
-  • Телефон: ${phone}
-  • Имя: ${userName}
-  • Почта: ${email}
-  
-  📋 <b>Информация о питомце:</b>
-  • Имя: ${petName}
-  • Вид: ${petType}
-  
-  ⏰ <b>Время заявки:</b> ${new Date().toLocaleString("ru-RU")}
-  
-  ━━━━━━━━━━━━━━━━━━━━━
-  ❗️ Свяжитесь с клиентом для подтверждения
-    `.trim();
+📋 <b>Информация о клиенте:</b>
+• Имя: ${data.pet_name}
+• Email: ${data.email}
+
+🐕 <b>Питомец:</b> ${data.pet_type}
+
+📞 <b>Телефон:</b> ${data.phone_number}
+
+⏰ <b>Время заявки:</b> ${new Date().toLocaleString("ru-RU")}
+
+━━━━━━━━━━━━━━━━━━━━━
+❗️ Свяжитесь с клиентом для подтверждения
+  `.trim();
 }
