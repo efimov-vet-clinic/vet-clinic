@@ -4,7 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
-    telegrambottoken: "",
-    telegramchatid: "",
+    telegramBotToken: "",
+    telegramChatId: "",
   },
+
+  modules: ["@nuxtjs/tailwindcss"],
 });
