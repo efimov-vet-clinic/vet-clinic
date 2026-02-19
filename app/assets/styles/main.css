@@ -1,0 +1,21 @@
+@import "./vars.css";
+
+html,
+body {
+  font-size: calc(10 / 1440 * 100vw);
+  color: var(--primary);
+
+  @media (max-width: 1024px) {
+    font-size: calc(10 / 980 * 100vw);
+  }
+  @media (max-width: 767px) {
+    font-size: calc(10 / 375 * 100vw);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s ease;
+}

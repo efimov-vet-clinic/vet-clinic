@@ -1,7 +1,9 @@
+<script setup lang="ts">
+import "~/assets/styles/main.css";
+</script>
+
 <template>
   <div>
     <Header />
-
-    <Form />
   </div>
 </template>
