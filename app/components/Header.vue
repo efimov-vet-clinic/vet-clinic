@@ -15,7 +15,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <header class="w-full pt-[1.6rem] px-[1.6rem]">
+  <header class="w-full pt-[1.6rem] px-[1.6rem] md:px-[3.2rem]">
     <div
       class="mx-auto w-full bg-[--light-blue] flex justify-between items-center py-[1.6rem] px-[1.6rem] rounded-[1.2rem]"
     >
@@ -32,7 +32,9 @@ const toggleMenu = () => {
       </nav>
 
       <div>
-        <Button class="hidden md:block">Записаться на приём</Button>
+        <Button color="accent" class="hidden md:block"
+          >Записаться на приём</Button
+        >
         <button
           @click="toggleMenu"
           class="flex flex-col justify-center items-center gap-[0.6rem] md:hidden w-[3.2rem] h-[3.2rem] relative z-50"
