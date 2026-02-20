@@ -15,7 +15,7 @@ const services = ref<FooterInfoBlock>({
 const clinic = ref<FooterInfoBlock>({
   title: "Клиника",
   links: [
-    { link: "#", text: "О нас" },
+    { link: "/about", text: "О нас" },
     { link: "#", text: "Команда" },
     { link: "#", text: "Услуги" },
     { link: "#", text: "Контакты" },
@@ -32,7 +32,7 @@ const clinic = ref<FooterInfoBlock>({
     class="w-full px-[1.6rem] md:px-[3.2rem] pb-[1.6rem] pt-[1.2rem] text-[--base]"
   >
     <div
-      class="bg-[--accent] rounded-[1.2rem] p-[1.6rem] h-fit flex flex-col xl:flex-row gap-[6.4rem] xl:gap-[2rem]"
+      class="bg-[--accent] rounded-[1.2rem] p-[1.6rem] h-fit flex flex-col min-[1180px]:flex-row gap-[6.4rem] xl:gap-[2rem]"
     >
       <div
         class="flex flex-col w-full items-between gap-[6.4rem] xl:gap-[18rem]"
