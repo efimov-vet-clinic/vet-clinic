@@ -1,0 +1,39 @@
+@import "./vars.css";
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+  font-size: calc(10 / 1440 * 100vw);
+  color: var(--primary);
+
+  @media (max-width: 1024px) {
+    font-size: calc(10 / 1024 * 100vw);
+  }
+  @media (max-width: 980px) {
+    font-size: calc(10 / 860 * 100vw);
+  }
+  @media (max-width: 767px) {
+    font-size: calc(10 / 450 * 100vw);
+  }
+  @media (max-width: 650px) {
+    font-size: calc(10 / 550 * 100vw);
+  }
+  @media (max-width: 540px) {
+    font-size: calc(10 / 400 * 100vw);
+  }
+
+  @media (max-width: 414px) {
+    font-size: calc(10 / 414 * 100vw);
+  }
+
+  @media (max-width: 375px) {
+    font-size: calc(10 / 375 * 100vw);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: all 0.2s ease;
+}
