@@ -11,7 +11,9 @@ const items = ref([
 </script>
 
 <template>
-  <section class="w-full px-[1.6rem] md:px-[3.2rem] h-full pb-[1.6rem]">
+  <section
+    class="w-full px-[1.6rem] md:px-[3.2rem] pb-[1.6rem] h-[calc(100vh-10rem)] pt-[1.2rem]"
+  >
     <div
       class="bg-[--accent] h-full p-[1.6rem] md:p-[2.4rem] rounded-[1.2rem] flex flex-col items-start justify-between overflow-hidden relative"
     >
