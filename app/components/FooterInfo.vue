@@ -14,9 +14,11 @@ const { info } = defineProps<{
 
     <ul class="flex flex-col gap-[1.2rem]">
       <li v-for="item in info.links" :key="item.text" class="text-[1.6rem]">
-        <a :href="item.link" class="hover:text-[--light-blue]">{{
-          item.text
-        }}</a>
+        <NuxtLink
+          :to="item.link"
+          class="hover:text-[--light-blue-hover] hover:shadow-[0_0.15rem_0_0_var(--light-blue-hover)]"
+          >{{ item.text }}</NuxtLink
+        >
       </li>
     </ul>
   </div>

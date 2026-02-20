@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const nav = ref([
-  { link: "#", text: "О нас" },
+  { link: "/about", text: "О нас" },
   { link: "#", text: "Команда" },
   { link: "#", text: "Услуги" },
   { link: "#", text: "Вопросы" },
@@ -24,9 +24,11 @@ const toggleMenu = () => {
       <nav class="hidden md:block">
         <ul class="text-[1.6rem] flex gap-[2.4rem]">
           <li v-for="item in nav" :key="item.link">
-            <a :href="item.link" class="hover:text-[--accent] cursor-pointer">{{
-              item.text
-            }}</a>
+            <NuxtLink
+              :to="item.link"
+              class="hover:text-[--accent] cursor-pointer"
+              >{{ item.text }}</NuxtLink
+            >
           </li>
         </ul>
       </nav>
