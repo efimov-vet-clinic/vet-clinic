@@ -2,6 +2,7 @@
 
 html,
 body {
+  font-family: "Inter", sans-serif;
   font-size: calc(10 / 1440 * 100vw);
   color: var(--primary);
 

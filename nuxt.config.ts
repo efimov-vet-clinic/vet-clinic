@@ -15,5 +15,5 @@ export default defineNuxtConfig({
     telegramChatId: "",
   },
 
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/fonts"],
 });

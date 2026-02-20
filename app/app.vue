@@ -8,5 +8,7 @@ import "~/assets/styles/main.css";
       <Header />
       <HeroSection />
     </div>
+
+    <AboutSection />
   </div>
 </template>
