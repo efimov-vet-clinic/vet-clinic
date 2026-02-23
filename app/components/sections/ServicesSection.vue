@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { LinkBar } from "~/interfaces/LinkBar";
-import type { ServiceCard } from "~/interfaces/ServiceCard";
+import type { LinkBar } from "~/interfaces/LinkBar.interface";
+import type { ServiceCard } from "~/interfaces/ServiceCard.interface";
 
 const link = ref<LinkBar>({
   title: "Услуги",

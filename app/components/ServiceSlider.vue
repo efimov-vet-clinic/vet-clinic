@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
-import type { ServiceCard } from "~/interfaces/ServiceCard";
+import type { ServiceCard } from "~/interfaces/ServiceCard.interface";
 
 const { services } = defineProps<{
   services: ServiceCard[];

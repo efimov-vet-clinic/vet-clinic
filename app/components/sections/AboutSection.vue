@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LinkBar } from "~/interfaces/LinkBar";
+import type { LinkBar } from "~/interfaces/LinkBar.interface";
 
 const link = ref<LinkBar>({
   title: "О нас",

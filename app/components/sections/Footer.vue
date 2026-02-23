@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FooterInfoBlock } from "~/interfaces/FooterLink";
+import type { FooterInfoBlock } from "~/interfaces/FooterLink.interface";
 
 const services = ref<FooterInfoBlock>({
   title: "Услуги",
