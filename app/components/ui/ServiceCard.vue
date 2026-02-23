@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ServiceCard } from "~/interfaces/ServiceCard";
+import type { ServiceCard } from "~/interfaces/ServiceCard.interface";
 
 const { service } = defineProps<{
   service: ServiceCard;

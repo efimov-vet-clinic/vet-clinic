@@ -2,4 +2,5 @@
   <HeroSection />
   <AboutSection />
   <ServicesSection />
+  <FaqSection />
 </template>
