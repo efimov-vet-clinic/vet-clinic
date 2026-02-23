@@ -15,5 +15,10 @@ export default defineNuxtConfig({
     telegramChatId: "",
   },
 
+  css: ["swiper/css"],
+  build: {
+    transpile: ["swiper"],
+  },
+
   modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/fonts", "@nuxt/icon"],
 });
