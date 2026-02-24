@@ -1,166 +1,23 @@
-<template>
-  <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
-      Запись на прием в ветеринарную клинику
-    </h2>
+<script setup lang="ts">
+import type { Adress } from "~/interfaces/Adress.interface";
+import type { PetFormData } from "~/interfaces/PetFormData.interface";
+import type { PetType } from "~/interfaces/PetType.interface";
 
-    <form @submit.prevent="handleSubmit" class="space-y-4">
-      <!-- Имя владельца -->
-      <div>
-        <label
-          for="ownerName"
-          class="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Имя владельца *
-        </label>
-        <input
-          id="ownerName"
-          v-model="formData.ownerName"
-          type="text"
-          required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Введите ваше имя"
-        />
-      </div>
-
-      <!-- Имя питомца -->
-      <div>
-        <label
-          for="petName"
-          class="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Имя питомца *
-        </label>
-        <input
-          id="petName"
-          v-model="formData.petName"
-          type="text"
-          required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Введите имя питомца"
-        />
-      </div>
-
-      <!-- Тип питомца -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Тип питомца *
-        </label>
-        <div class="flex space-x-4">
-          <label class="flex items-center">
-            <input
-              v-model="formData.petType"
-              type="radio"
-              value="cat"
-              required
-              class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-            />
-            <span class="ml-2 text-gray-700">Кот</span>
-          </label>
-          <label class="flex items-center">
-            <input
-              v-model="formData.petType"
-              type="radio"
-              value="dog"
-              required
-              class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-            />
-            <span class="ml-2 text-gray-700">Собака</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Номер телефона -->
-      <div>
-        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-          Номер телефона *
-        </label>
-        <input
-          id="phone"
-          v-model="formData.phone"
-          type="tel"
-          required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="+7 (999) 123-45-67"
-        />
-      </div>
-
-      <!-- Email -->
-      <div>
-        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-          Электронная почта *
-        </label>
-        <input
-          id="email"
-          v-model="formData.email"
-          type="email"
-          required
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="example@mail.com"
-        />
-      </div>
-
-      <!-- Чекбокс согласия -->
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <input
-            id="privacy"
-            v-model="formData.privacyAccepted"
-            type="checkbox"
-            required
-            class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-          />
-        </div>
-        <label for="privacy" class="ml-2 text-sm text-gray-600">
-          Я согласен на обработку персональных данных и принимаю
-          <NuxtLink to="/privacy" class="text-blue-600 hover:underline">
-            политику конфиденциальности
-          </NuxtLink>
-          *
-        </label>
-      </div>
-
-      <!-- Кнопка отправки -->
-      <button
-        type="submit"
-        :disabled="isSubmitting"
-        class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {{ isSubmitting ? "Отправка..." : "Отправить заявку" }}
-      </button>
-
-      <!-- Сообщение об успехе/ошибке -->
-      <div
-        v-if="submitMessage"
-        :class="[
-          'p-4 rounded-md',
-          submitStatus === 'success'
-            ? 'bg-green-100 text-green-700'
-            : 'bg-red-100 text-red-700',
-        ]"
-      >
-        {{ submitMessage }}
-      </div>
-    </form>
-  </div>
-</template>
-
-<script setup>
-import { ref, reactive, onMounted } from "vue";
-
-const formData = reactive({
+const formData = ref<PetFormData>({
+  adress: "",
   ownerName: "",
   petName: "",
   petType: "",
   phone: "",
   email: "",
+  comment: "",
   privacyAccepted: false,
 });
 
-const isSubmitting = ref(false);
+const isSubmitting = ref<boolean>(false);
 const submitMessage = ref("");
-const submitStatus = ref("");
-const formId = ref(null);
+const submitStatus = ref<"success" | "error" | null>(null);
+const formId = ref<string>("");
 
 // Генерируем уникальный ID формы при монтировании
 onMounted(() => {
@@ -175,7 +32,7 @@ const handleSubmit = async () => {
   }
 
   // Валидация
-  if (!formData.privacyAccepted) {
+  if (!formData.value.privacyAccepted) {
     submitStatus.value = "error";
     submitMessage.value =
       "Необходимо согласиться с политикой конфиденциальности";
@@ -190,7 +47,7 @@ const handleSubmit = async () => {
     const response = await $fetch("/api/submit-application", {
       method: "POST",
       body: {
-        ...formData,
+        ...formData.value,
         _formId: formId.value,
         _timestamp: Date.now(),
       },
@@ -207,6 +64,7 @@ const handleSubmit = async () => {
 
       // Очистка формы
       Object.assign(formData, {
+        adress: "",
         ownerName: "",
         petName: "",
         petType: "",
@@ -215,7 +73,7 @@ const handleSubmit = async () => {
         privacyAccepted: false,
       });
     }
-  } catch (error) {
+  } catch (error: any) {
     submitStatus.value = "error";
     submitMessage.value = "❌ Ошибка при отправке";
     console.error("Error:", error);
@@ -226,4 +84,139 @@ const handleSubmit = async () => {
     }, 1000);
   }
 };
+
+const adress = ref<Adress[]>([
+  { metro: "Ленинский проспект", adress: "Ленинский пр 84 к2" },
+  { metro: "Балтийская", adress: "ул. Циолковского 10-А" },
+]);
+const petType = ref<PetType[]>([
+  { image: "Ленинский проспект", title: "Собака" },
+  { image: "Балтийская", title: "Кошка" },
+]);
 </script>
+
+<template>
+  <div class="w-full p-[1.6rem] bg-[--accent] rounded-[1.2rem] text-[--base]">
+    <form @submit.prevent="handleSubmit" class="space-y-[1.2rem]">
+      <div
+        class="flex flex-col gap-[1.2rem] p-[1.2rem] bg-[--light-blue] rounded-[0.4rem]"
+      >
+        <label class="text-[1.6rem]/[120%] text-[--accent]"
+          >Выберите адрес*</label
+        >
+        <div class="flex gap-[1.2rem]">
+          <RadioButton
+            v-for="item in adress"
+            v-model="formData.adress"
+            :name="item.adress"
+          >
+            <div class="ml-2 text-[--primary] flex flex-col gap-[1.2rem]">
+              <p class="text-[1.8rem]/[90%] font-semibold">{{ item.adress }}</p>
+              <div class="text-[1.6rem]/[90%] flex items-center gap-[1.2rem]">
+                <div
+                  class="flex gap-[0.4rem] items-end text-white py-[0.4rem] px-[0.8rem] rounded-[0.8rem] bg-red-600"
+                >
+                  <IconMetro class="w-[1.6rem] h-[1.6rem]" />
+                  <p>1</p>
+                </div>
+
+                {{ item.metro }}
+              </div>
+            </div>
+          </RadioButton>
+        </div>
+      </div>
+
+      <!-- Тип питомца -->
+      <div
+        class="flex flex-col gap-[1.2rem] p-[1.2rem] bg-[--light-blue] rounded-[0.4rem]"
+      >
+        <label class="text-[1.6rem]/[120%] text-[--accent]">Тип питомца*</label>
+        <div class="flex flex-col gap-[1.2rem]">
+          <div class="flex gap-[1.2rem]">
+            <RadioButton
+              v-for="item in petType"
+              v-model="formData.petType"
+              :name="item.title"
+            >
+              <div class="ml-2 text-[--primary] flex flex-col gap-[1.2rem]">
+                <p class="text-[1.8rem]/[90%] font-semibold">
+                  {{ item.title }}
+                </p>
+              </div>
+            </RadioButton>
+          </div>
+
+          <Input
+            v-model="formData.petName"
+            placeholder="Введите имя питомца"
+            id="petName"
+          />
+        </div>
+      </div>
+
+      <Input
+        v-model="formData.ownerName"
+        placeholder="Введите ваше имя"
+        id="ownerName"
+        required
+      />
+
+      <Input
+        v-model="formData.phone"
+        placeholder="+7 (999) 123-45-67"
+        type="tel"
+        id="phone"
+        required
+      />
+
+      <Input
+        v-model="formData.email"
+        placeholder="example@mail.com"
+        type="email"
+        id="email"
+      />
+      <Input
+        v-model="formData.comment"
+        placeholder="Комментарий"
+        type="textarea"
+        id="comment"
+      />
+
+      <!-- Чекбокс согласия -->
+      <div class="flex items-start">
+        <div class="flex items-center h-5">
+          <input
+            id="privacy"
+            v-model="formData.privacyAccepted"
+            type="checkbox"
+            required
+            class="w-[1.6rem] h-[1.6rem] mt-[0.8rem] text-[--base] border-gray-300"
+          />
+        </div>
+        <label for="privacy" class="ml-2 text-[1.6rem]">
+          Я согласен на обработку персональных данных и принимаю
+          <NuxtLink
+            to="/privacy"
+            class="text-[--light-blue] hover:shadow-[0_0.15rem_0px_0_var(--base)]"
+          >
+            политику конфиденциальности*
+          </NuxtLink>
+        </label>
+      </div>
+
+      <Button
+        color="base"
+        type="submit"
+        :disabled="isSubmitting"
+        class="w-full"
+      >
+        {{ isSubmitting ? "Отправка..." : "Отправить заявку" }}
+      </Button>
+
+      <StatusBlock v-if="submitMessage" :submitStatus="submitStatus">
+        {{ submitMessage }}
+      </StatusBlock>
+    </form>
+  </div>
+</template>

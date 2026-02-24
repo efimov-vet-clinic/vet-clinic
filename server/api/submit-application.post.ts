@@ -3,7 +3,7 @@ import TelegramBot from "node-telegram-bot-api";
 
 export default defineEventHandler(async (event) => {
   try {
-    const body = await readBody(event);
+    const body: FormData = await readBody(event);
     const config = useRuntimeConfig();
     const bot = new TelegramBot(config.telegramBotToken);
     const message = formatTelegramMessage(body);
@@ -26,25 +26,46 @@ export default defineEventHandler(async (event) => {
   }
 });
 
-function formatTelegramMessage(data: any) {
-  const petType = data.petType === "cat" ? "🐱 Кот" : "🐕 Собака";
+interface FormData {
+  adress: string;
+  ownerName: string;
+  petName: string;
+  petType: string;
+  phone: string;
+  email: string;
+  comment: string;
+  privacyAccepted: boolean;
+  _formId: string;
+  _timestamp: number;
+}
+
+enum Adress {
+  adress_1 = "Ленинский пр 84 к2",
+  adress_2 = "ул. Циолковского 10-А",
+}
+
+function formatTelegramMessage(data: FormData) {
+  const petType = data.petType === "Кошка" ? "🐈 Кошка" : "🐕 Собака";
+  const adress =
+    data.adress === Adress.adress_1 ? Adress.adress_1 : Adress.adress_2;
   const date = new Date().toLocaleString("ru-RU", {
     timeZone: "Europe/Moscow",
     dateStyle: "full",
     timeStyle: "short",
   });
 
-  return `📋 НОВАЯ ЗАЯВКА НА ПРИЕМ
-════════════════════════
-📅 Дата: ${date}
+  return `
+  📋 Новая заявка на ${adress}
+  ════════════════════════
+  📅 Дата: ${date}
 
-👤 Владелец: ${data.ownerName}
-🐾 Питомец: ${data.petName}
-📋 Тип: ${petType}
+  👤 Владелец: ${data.ownerName}
+  🐾 Питомец: ${data.petName}
+  📋 Тип: ${petType}
 
-📞 Телефон: ${data.phone}
-✉️ Email: ${data.email}
+  📞 Телефон: ${data.phone}
+  ✉️ Email: ${data.email}
 
-════════════════════════
-✅ Согласие с политикой конфиденциальности`;
+  ════════════════════════
+  ✅ Согласие с политикой конфиденциальности`;
 }

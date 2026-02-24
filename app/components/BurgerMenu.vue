@@ -33,7 +33,8 @@ const handleClose = () => {
         </li>
       </ul>
     </nav>
-
-    <Button @click="handleClose" class="w-full"> Записаться на приём </Button>
+    <NuxtLink to="#form">
+      <Button @click="handleClose" class="w-full"> Записаться на приём </Button>
+    </NuxtLink>
   </div>
 </template>

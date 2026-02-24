@@ -34,9 +34,12 @@ const toggleMenu = () => {
       </nav>
 
       <div>
-        <Button color="accent" class="hidden md:block"
-          >Записаться на приём</Button
-        >
+        <NuxtLink to="#form">
+          <Button color="accent" class="hidden md:block"
+            >Записаться на приём</Button
+          >
+        </NuxtLink>
+
         <button
           @click="toggleMenu"
           class="flex flex-col justify-center items-center gap-[0.6rem] md:hidden w-[3.2rem] h-[3.2rem] relative z-50"
