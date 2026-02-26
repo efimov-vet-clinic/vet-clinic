@@ -24,8 +24,8 @@ const contactsInfo = ref<ContactInfo[]>([
       <div
         class="flex justify-between gap-[1.6rem] max-[980px]:flex-col max-[980px]:gap-[3.2rem]"
       >
-        <HeadingH3 class="text-[--accent] text-start w-full"
-          >Контакты</HeadingH3
+        <Heading level="h3" align="start" class="w-full text-[--accent]"
+          >Контакты</Heading
         >
 
         <div class="flex flex-col gap-[3.2rem] w-full">

@@ -2,7 +2,7 @@
   <HeroSection />
   <AboutSection>
     <LinkBar link="/about" text="О нас" />
-    <HeadingH3>
+    <Heading level="h3" align="center">
       <span>
         За&nbsp;<span class="text-[--accent]">8&nbsp;лет работы</span> нам
         доверили заботу о&nbsp;своих хвостатых членах семьи
@@ -12,7 +12,7 @@
         Мы&nbsp;гордимся, что к&nbsp;нам возвращаются снова и&nbsp;рекомендуют
         друзьям
       </span>
-    </HeadingH3>
+    </Heading>
   </AboutSection>
   <ServicesSection />
   <FormSection />

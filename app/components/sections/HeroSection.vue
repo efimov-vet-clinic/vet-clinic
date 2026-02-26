@@ -23,11 +23,13 @@ const items = ref([
         <div
           class="p-[1.6rem] md:p-[2.4rem] bg-[--base] rounded-[0.4rem] w-full text-[--accent] flex flex-col gap-[1.6rem]"
         >
-          <h1
+          <Heading
+            level="h1"
+            align="start"
             class="text-[3.2rem]/[90%] md:text-[5.6rem]/[90%] font-semibold tracking-tight"
           >
             Ваш питомец в&nbsp;надёжных руках
-          </h1>
+          </Heading>
           <p class="text-[1.6rem]/[120%] md:text-[2rem]/[120%] md:w-[35rem]">
             Профессиональная ветеринарная помощь с&nbsp;заботой
             и&nbsp;вниманием.
@@ -41,7 +43,7 @@ const items = ref([
         </div>
       </div>
       <NuxtImg
-        src="/images/dog.webp"
+        src="/images/generations/dog.webp"
         alt="Собака"
         class="absolute w-[27rem] min-[380px]:w-full min-[390px]:w-[29rem] min-[414px]:w-[36rem] min-[767px]:w-[60rem] min-[979px]:w-[40rem] min-[1212px]:w-[50rem] min-[1280px]:w-[50rem] min-[1380px]:w-[40rem] h-auto bottom-[-5rem] z-0 md:bottom-[-10rem] left-1/2 -translate-x-1/2"
       />

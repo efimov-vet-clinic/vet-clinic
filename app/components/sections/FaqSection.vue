@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AccordItem } from "~/interfaces/AccordItem.interface";
+import type { AccordItem } from "~/interfaces/Accord.interface";
 
 const faqContent = ref<AccordItem[]>([
   {
@@ -58,10 +58,10 @@ const faqContent = ref<AccordItem[]>([
   <section
     class="w-full px-[1.6rem] md:px-[3.2rem] h-full py-[10rem] max-[767px]:pt-0"
   >
-    <div class="flex flex-col items-center gap-[6.4rem] w-full">
-      <HeadingH3 class="w-[55rem] max-[767px]:w-[40rem] max-[640px]:w-full">
-        Часто задаваемые вопросы
-      </HeadingH3>
+    <div
+      class="flex flex-col items-center gap-[6.4rem] max-[650px]:gap-[4.8rem] w-full"
+    >
+      <Heading level="h3" align="center"> Часто задаваемые вопросы </Heading>
 
       <div class="flex flex-col gap-[1.2rem] w-full min-[1024px]:w-[90rem]">
         <AccordItem

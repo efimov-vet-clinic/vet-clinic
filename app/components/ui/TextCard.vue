@@ -2,9 +2,9 @@
   <div
     class="p-[1.6rem] rounded-[1.2rem] w-full flex flex-col justify-between bg-[--light-blue] h-full relative"
   >
-    <HeadingH4 class="text-[--accent] text-start">
+    <Heading level="h4" align="start" class="text-[--accent]">
       <slot name="title"></slot>
-    </HeadingH4>
+    </Heading>
 
     <div class="flex flex-col">
       <p class="text-[1.6rem]/[130%] text-[--accent]">

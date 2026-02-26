@@ -61,7 +61,7 @@ const services = ref<ServiceCard[]>([
     title: "Мемориальные услуги",
     description:
       "Мы понимаем, насколько тяжелым может быть момент прощания с питомцем. Наши сотрудники тактично и оперативно помогут решить все вопросы, связанные с эвтаназией (по медицинским показаниям), кремацией и документальным оформлением захоронения, взяв на себя бюрократические сложности",
-    image: "/images/angel-cat.webp",
+    image: "/images/generations/angel-cat.webp",
     gridClass:
       "col-start-2 col-end-5 max-[980px]:col-end-3 row-start-2 max-[980px]:row-start-3 row-end-3 max-[980px]:row-end-4 bg-gray-200 max-[650px]:col-start-1 max-[650px]:col-end-2 max-[650px]:row-start-6 max-[650px]:row-end-7",
 
@@ -78,9 +78,7 @@ const services = ref<ServiceCard[]>([
       <div
         class="flex flex-col items-center gap-[2.4rem] mb-[6.4rem] max-[650px]:mb-[4.8rem]"
       >
-        <HeadingH3 class="w-[55rem] max-[767px]:w-[40rem] max-[640px]:w-full">
-          Направления деятельности
-        </HeadingH3>
+        <Heading level="h3" align="center"> Направления деятельности </Heading>
 
         <p
           class="text-[1.6rem]/[120%] text-center w-[80rem] max-[767px]:w-full"
