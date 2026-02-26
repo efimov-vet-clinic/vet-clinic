@@ -13,6 +13,7 @@
     </HeadingH3>
   </AboutSection>
   <PrincipleSection />
+  <ActivitySection />
   <FormSection />
   <ContactsSection />
   <FaqSection />
