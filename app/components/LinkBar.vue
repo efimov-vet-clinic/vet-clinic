@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import type { LinkBar } from "~/interfaces/LinkBar.interface";
 
-const { link } = defineProps<{
-  link: LinkBar;
+const { link, text } = defineProps<{
+  link: string;
+  text: string;
 }>();
 </script>
 
 <template>
   <div class="flex justify-between text-[1.6rem] text-[--accent]">
-    <p>{{ link.title }}</p>
+    <p>{{ text }}</p>
 
     <NuxtLink
       class="flex items-center gap-[0.4rem] hover:text-[--accent-hover] hover:shadow-[0_0.15rem_0px_0_var(--accent-hover)]"
-      :to="link.link"
+      :to="link"
       >Подробнее <Icon name="ic:outline-arrow-right-alt" size="2rem"
     /></NuxtLink>
   </div>
