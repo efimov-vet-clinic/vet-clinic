@@ -5,6 +5,7 @@ body {
   font-family: "Inter", sans-serif;
   font-size: calc(10 / 1440 * 100vw);
   color: var(--primary);
+  scroll-behavior: smooth;
 
   @media (max-width: 1024px) {
     font-size: calc(10 / 1200 * 100vw);
@@ -13,7 +14,7 @@ body {
     font-size: calc(10 / 860 * 100vw);
   }
   @media (max-width: 767px) {
-    font-size: calc(10 / 450 * 100vw);
+    font-size: calc(10 / 650 * 100vw);
   }
   @media (max-width: 650px) {
     font-size: calc(10 / 550 * 100vw);

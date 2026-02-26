@@ -42,9 +42,11 @@ const clinic = ref<FooterInfoBlock>({
         >
           Efimov.vet
         </div>
-        <Button color="base" class="w-full sm:w-fit"
-          >Записаться на приём</Button
-        >
+        <NuxtLink to="#form">
+          <Button color="base" class="w-full sm:w-fit"
+            >Записаться на приём</Button
+          >
+        </NuxtLink>
       </div>
 
       <div class="flex flex-col gap-[6.4rem]">

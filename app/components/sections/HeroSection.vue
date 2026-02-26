@@ -45,9 +45,12 @@ const items = ref([
         alt="Собака"
         class="absolute w-[27rem] min-[380px]:w-full min-[390px]:w-[29rem] min-[414px]:w-[36rem] min-[767px]:w-[60rem] min-[979px]:w-[40rem] min-[1212px]:w-[50rem] min-[1280px]:w-[50rem] min-[1380px]:w-[40rem] h-auto bottom-[-5rem] z-0 md:bottom-[-10rem] left-1/2 -translate-x-1/2"
       />
-      <Button color="base" class="relative z-10 w-full md:w-fit"
-        >Записаться на приём</Button
-      >
+
+      <NuxtLink to="#form">
+        <Button color="base" class="relative z-10 w-full md:w-fit"
+          >Записаться на приём</Button
+        >
+      </NuxtLink>
     </div>
   </section>
 </template>
