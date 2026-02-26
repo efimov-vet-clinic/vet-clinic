@@ -14,7 +14,7 @@ body {
     font-size: calc(10 / 860 * 100vw);
   }
   @media (max-width: 767px) {
-    font-size: calc(10 / 450 * 100vw);
+    font-size: calc(10 / 650 * 100vw);
   }
   @media (max-width: 650px) {
     font-size: calc(10 / 550 * 100vw);

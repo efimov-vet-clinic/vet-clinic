@@ -90,8 +90,8 @@ const adress = ref<Adress[]>([
   { metro: "Балтийская", adress: "ул. Циолковского 10-А" },
 ]);
 const petType = ref<PetType[]>([
-  { image: "Ленинский проспект", title: "Собака" },
-  { image: "Балтийская", title: "Кошка" },
+  { image: "form-dog.webp", title: "Собака" },
+  { image: "form-cat.webp", title: "Кошка" },
 ]);
 </script>
 
@@ -102,21 +102,23 @@ const petType = ref<PetType[]>([
         class="flex flex-col gap-[1.2rem] p-[1.2rem] bg-[--light-blue] rounded-[0.4rem]"
       >
         <label class="text-[1.6rem]/[120%] text-[--accent]"
-          >Выберите адрес*</label
+          >Выберите адрес</label
         >
-        <div class="flex gap-[1.2rem]">
+        <div class="flex gap-[1.2rem] max-[540px]:flex-col">
           <RadioButton
             v-for="item in adress"
             v-model="formData.adress"
             :name="item.adress"
           >
-            <div class="ml-2 text-[--primary] flex flex-col gap-[1.2rem]">
-              <p class="text-[1.8rem]/[90%] font-semibold">{{ item.adress }}</p>
-              <div class="text-[1.6rem]/[90%] flex items-center gap-[1.2rem]">
+            <div class="text-[--primary] flex flex-col gap-[0.8rem]">
+              <p class="text-[1.6rem]/[90%] text-[--accent] font-semibold">
+                {{ item.adress }}
+              </p>
+              <div class="text-[1.2rem]/[90%] flex items-center gap-[0.4rem]">
                 <div
                   class="flex gap-[0.4rem] items-end text-white py-[0.4rem] px-[0.8rem] rounded-[0.8rem] bg-red-600"
                 >
-                  <IconMetro class="w-[1.6rem] h-[1.6rem]" />
+                  <IconMetro class="w-[1.2rem] h-[1.2rem]" />
                   <p>1</p>
                 </div>
 
@@ -131,18 +133,25 @@ const petType = ref<PetType[]>([
       <div
         class="flex flex-col gap-[1.2rem] p-[1.2rem] bg-[--light-blue] rounded-[0.4rem]"
       >
-        <label class="text-[1.6rem]/[120%] text-[--accent]">Тип питомца*</label>
+        <label class="text-[1.6rem]/[120%] text-[--accent]">Тип питомца</label>
         <div class="flex flex-col gap-[1.2rem]">
-          <div class="flex gap-[1.2rem]">
+          <div class="flex gap-[1.2rem] max-[540px]:flex-col">
             <RadioButton
               v-for="item in petType"
               v-model="formData.petType"
               :name="item.title"
+              class="relative h-[8rem]"
             >
               <div class="ml-2 text-[--primary] flex flex-col gap-[1.2rem]">
-                <p class="text-[1.8rem]/[90%] font-semibold">
+                <p class="text-[1.6rem]/[90%] font-semibold text-[--accent]">
                   {{ item.title }}
                 </p>
+
+                <NuxtImg
+                  :src="`/images/${item.image}`"
+                  alt="планшет"
+                  class="absolute bottom-0 right-0 rounded-br-[0.4rem] w-[8rem]"
+                />
               </div>
             </RadioButton>
           </div>
@@ -155,33 +164,38 @@ const petType = ref<PetType[]>([
         </div>
       </div>
 
-      <Input
-        v-model="formData.ownerName"
-        placeholder="Введите ваше имя"
-        id="ownerName"
-        required
-      />
+      <div
+        class="flex flex-col gap-[1.2rem] p-[1.2rem] bg-[--light-blue] rounded-[0.4rem]"
+      >
+        <label class="text-[1.6rem]/[120%] text-[--accent]">Владелец</label>
+        <Input
+          v-model="formData.ownerName"
+          placeholder="Введите ваше имя"
+          id="ownerName"
+          required
+        />
 
-      <Input
-        v-model="formData.phone"
-        placeholder="+7 (999) 123-45-67"
-        type="tel"
-        id="phone"
-        required
-      />
+        <Input
+          v-model="formData.phone"
+          placeholder="+7 (999) 123-45-67"
+          type="tel"
+          id="phone"
+          required
+        />
 
-      <Input
-        v-model="formData.email"
-        placeholder="example@mail.com"
-        type="email"
-        id="email"
-      />
-      <Input
-        v-model="formData.comment"
-        placeholder="Комментарий"
-        type="textarea"
-        id="comment"
-      />
+        <Input
+          v-model="formData.email"
+          placeholder="example@mail.com"
+          type="email"
+          id="email"
+        />
+        <Input
+          v-model="formData.comment"
+          placeholder="Комментарий"
+          type="textarea"
+          id="comment"
+        />
+      </div>
 
       <!-- Чекбокс согласия -->
       <div class="flex items-start">
