@@ -1,7 +1,7 @@
 <template>
   <AboutPromoSection />
   <AboutSection>
-    <HeadingH3>
+    <Heading level="h3" align="center">
       <span>
         <span class="text-[--accent]">Наша миссия</span> — обеспечить
         максимальный
@@ -10,10 +10,11 @@
         >
         и спокойствие для вас
       </span>
-    </HeadingH3>
+    </Heading>
   </AboutSection>
   <PrincipleSection />
   <ActivitySection />
+  <GalerySection />
   <FormSection />
   <ContactsSection />
   <FaqSection />

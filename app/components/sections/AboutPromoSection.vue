@@ -9,8 +9,8 @@
         <div
           class="flex flex-col gap-[1.6rem] w-1/2 max-[980px]:w-4/5 max-[767px]:w-full"
         >
-          <HeadingH1 class="text-[--base]"
-            >Мы заботимся о тех, кого вы любите</HeadingH1
+          <Heading level="h1" align="start" class="text-[--base]"
+            >Мы заботимся о тех, кого вы любите</Heading
           >
 
           <p

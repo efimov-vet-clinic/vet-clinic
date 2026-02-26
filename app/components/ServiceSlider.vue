@@ -33,9 +33,9 @@ const onSlideChange = () => {
         class="w-full h-full p-[1.6rem] flex flex-col gap-[3.2rem] rounded-[1.2rem]"
         :class="`bg-[${service.color}] text-[${service.textColor}]`"
       >
-        <h5 class="text-[3.2rem]/[90%] font-semibold tracking-tight">
+        <Heading level="h5" align="start">
           {{ service.title }}
-        </h5>
+        </Heading>
 
         <p class="text-[1.6rem]/[130%]">{{ service.description }}</p>
 

@@ -12,7 +12,7 @@ const services = ref<ServiceCard[]>([
     gridClass: "col-start-1 col-end-3",
     textColor: "--accent",
     height: "h-[26rem]",
-    image: "/images/blue-dog.webp",
+    image: "/images/generations/blue-dog.webp",
     imageWidth: "w-[32rem] xl:w-[32rem]",
     imageAlt: "Синяя Собака",
     textWidth: "w-[28rem] xl:w-[35rem]",
@@ -36,7 +36,7 @@ const services = ref<ServiceCard[]>([
     gridClass: "col-start-4 col-end-5 row-start-1 row-end-4",
     textColor: "--accent",
     height: "h-full",
-    image: "/images/syringe.webp",
+    image: "/images/generations/syringe.webp",
     imageWidth: "w-[30rem] ",
     imageAlt: "Шприц",
   },
@@ -108,9 +108,9 @@ onBeforeUnmount(() => {
       <div
         class="flex flex-col items-center gap-[3.2rem] min-[1023px]:gap-[6.4rem]"
       >
-        <HeadingH3 class="w-[55rem] max-[767px]:w-[40rem] max-[640px]:w-full">
+        <Heading level="h3" align="center">
           Лечение, которому <br />можно доверять
-        </HeadingH3>
+        </Heading>
 
         <div
           v-if="isDesktop"

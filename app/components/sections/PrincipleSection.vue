@@ -32,9 +32,7 @@ const cards = ref<TextCard[]>([
 <template>
   <section class="w-full py-[10rem] max-[767px]:pt-0">
     <div class="flex flex-col items-center px-[1.6rem] md:px-[3.2rem]">
-      <HeadingH3 class="w-[55rem] max-[767px]:w-[40rem] max-[640px]:w-full">
-        Наши принципы работы
-      </HeadingH3>
+      <Heading level="h3" align="center"> Наши принципы работы </Heading>
 
       <div
         class="h-[22rem] flex gap-[1.2rem] mt-[6.4rem] max-[650px]:mt-[4.8rem] max-[980px]:flex-wrap max-[980px]:w-[61.2rem] max-[980px]:h-auto max-[650px]:w-full"

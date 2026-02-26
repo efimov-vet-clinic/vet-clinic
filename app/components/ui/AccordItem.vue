@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AccordItem } from "~/interfaces/AccordItem.interface";
+import type { AccordItem } from "~/interfaces/Accord.interface";
 
 const { accord } = defineProps<{
   accord: AccordItem;
@@ -19,9 +19,9 @@ const toggle = () => {
     @click="toggle"
   >
     <div class="flex justify-between items-center max-[767px]:items-start">
-      <h5 class="text-[2.4rem]/[120%] text-[--primary] font-medium">
+      <p class="text-[2rem]/[120%] text-[--primary] font-medium">
         {{ accord.title }}
-      </h5>
+      </p>
 
       <Icon
         name="ic:baseline-add"

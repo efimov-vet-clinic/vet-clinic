@@ -8,9 +8,9 @@ const { info } = defineProps<{
 
 <template>
   <div class="flex flex-col gap-[2rem] w-[32rem]">
-    <h5 class="text-[3.2rem] tracking-tight font-semibold">
+    <Heading level="h5" align="start">
       {{ info.title }}
-    </h5>
+    </Heading>
 
     <ul class="flex flex-col gap-[1.2rem]">
       <li v-for="item in info.links" :key="item.text" class="text-[1.6rem]">

@@ -148,7 +148,7 @@ const petType = ref<PetType[]>([
                 </p>
 
                 <NuxtImg
-                  :src="`/images/${item.image}`"
+                  :src="`/images/generations/${item.image}`"
                   alt="планшет"
                   class="absolute bottom-0 right-0 rounded-br-[0.4rem] w-[8rem]"
                 />
