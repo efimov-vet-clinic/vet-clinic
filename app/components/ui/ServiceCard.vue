@@ -14,7 +14,9 @@ const { service } = defineProps<{
       service.height === 'h-full' ? 'gap-[9.4rem]' : 'justify-between',
     ]"
   >
-    <HeadingH4 :color="service.textColor">{{ service.title }}</HeadingH4>
+    <HeadingH4 :class="`text-[${service.textColor}]`">{{
+      service.title
+    }}</HeadingH4>
 
     <p
       class="text-[1.6rem]/[130%]"

@@ -2,11 +2,6 @@
 import type { LinkBar } from "~/interfaces/LinkBar.interface";
 import type { ServiceCard } from "~/interfaces/ServiceCard.interface";
 
-const link = ref<LinkBar>({
-  title: "Услуги",
-  link: "/services",
-});
-
 const services = ref<ServiceCard[]>([
   {
     id: 1,
@@ -108,7 +103,7 @@ onBeforeUnmount(() => {
   <section class="w-full pb-[10rem]">
     <div class="flex flex-col gap-[3.2rem] min-[1023px]:gap-[6.4rem]">
       <div class="px-[1.6rem] md:px-[3.2rem]">
-        <LinkBar :link="link" />
+        <LinkBar link="/services" text="Услуги" />
       </div>
       <div
         class="flex flex-col items-center gap-[3.2rem] min-[1023px]:gap-[6.4rem]"
