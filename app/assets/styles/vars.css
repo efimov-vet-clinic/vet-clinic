@@ -1,9 +1,43 @@
+/* Зеленый */
 :root {
-  --primary: #1c1f2a;
-  --accent: #235cc6;
-  --accent-hover: #0e3887;
-  --base: #f8f9ff;
-  --light-blue: #dae7ff;
-  --primary-light: #dae7ff;
-  --light-blue-hover: #b7d0ff;
+  --primary: #1c2a23;
+  --accent: #27ae60;
+  --accent-hover: #1e8449;
+  --base: #f8fff9;
+  --light-blue: #d5f5e3;
+  --primary-light: #d5f5e3;
+  --light-blue-hover: #abebc6;
+}
+
+/* Теплый */
+/* :root {
+  --primary: #2a231c;
+  --accent: #f39c12;
+  --accent-hover: #d68910;
+  --base: #fffbf8;
+  --light-blue: #fdebd0;
+  --primary-light: #fdebd0;
+  --light-blue-hover: #fad7a0;
+} */
+
+/* Фиолетовый */
+/* :root {
+  --primary: #2a1c28;
+  --accent: #8e44ad;
+  --accent-hover: #6c3483;
+  --base: #fbf8ff;
+  --light-blue: #ebdef0;
+  --primary-light: #ebdef0;
+  --light-blue-hover: #d7bde2;
+} */
+
+/* Синий */
+:root {
+  --primary: #1c232a;
+  --accent: #2980b9;
+  --accent-hover: #1a5276;
+  --base: #f8fbff;
+  --light-blue: #d6eaf8;
+  --primary-light: #d6eaf8;
+  --light-blue-hover: #aed6f1;
 }

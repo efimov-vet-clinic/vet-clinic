@@ -130,7 +130,9 @@ onBeforeUnmount(() => {
         <div
           class="flex flex-col gap-[3.2rem] max-[1023px]:items-center w-full px-[1.6rem] md:px-[3.2rem]"
         >
-          <Button color="accent" class="w-full">Узнать цены</Button>
+          <NuxtLink to="/services">
+            <Button color="accent" class="w-full">Узнать цены</Button>
+          </NuxtLink>
         </div>
       </div>
     </div>

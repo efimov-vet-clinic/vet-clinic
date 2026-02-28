@@ -56,6 +56,7 @@ const faqContent = ref<AccordItem[]>([
 
 <template>
   <section
+    id="faq"
     class="w-full px-[1.6rem] md:px-[3.2rem] h-full py-[10rem] max-[767px]:pt-0"
   >
     <div

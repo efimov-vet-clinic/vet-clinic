@@ -23,13 +23,13 @@ const handleClose = () => {
     <nav class="">
       <ul class="text-[1.8rem] flex flex-col items-end gap-[3.2rem]">
         <li v-for="item in nav" :key="item.link">
-          <a
+          <NuxtLink
             @click="handleClose"
-            :href="item.link"
+            :to="item.link"
             class="block hover:text-[--accent] cursor-pointer font-medium"
           >
             {{ item.text }}
-          </a>
+          </NuxtLink>
         </li>
       </ul>
     </nav>
