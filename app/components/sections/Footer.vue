@@ -1,28 +1,13 @@
 <script setup lang="ts">
 import type { FooterInfoBlock } from "~/interfaces/FooterLink.interface";
 
-const services = ref<FooterInfoBlock>({
-  title: "Услуги",
-  links: [
-    { link: "#", text: "Дерматология" },
-    { link: "#", text: "Хирургия" },
-    { link: "#", text: "Ортопедия" },
-    { link: "#", text: "Диагностика" },
-    { link: "#", text: "Терапия" },
-    { link: "#", text: "Стоматология" },
-  ],
-});
 const clinic = ref<FooterInfoBlock>({
   title: "Клиника",
   links: [
     { link: "/about", text: "О нас" },
-    { link: "#", text: "Команда" },
-    { link: "#", text: "Услуги" },
-    { link: "#", text: "Контакты" },
-    { link: "#", text: "Вопросы" },
-    { link: "#", text: "Цены" },
-    { link: "#", text: "Политика конфиденциальности" },
-    { link: "#", text: "Пользовательское соглашение" },
+    { link: "/services", text: "Услуги" },
+    { link: "#contacts", text: "Контакты" },
+    { link: "#faq", text: "Вопросы" },
   ],
 });
 </script>
@@ -51,7 +36,6 @@ const clinic = ref<FooterInfoBlock>({
 
       <div class="flex flex-col gap-[6.4rem]">
         <div class="flex w-full xl:justify-between">
-          <FooterInfo :info="services" />
           <FooterInfo :info="clinic" />
         </div>
         <p class="xl:text-end text-[1.6rem]">

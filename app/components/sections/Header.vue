@@ -1,16 +1,17 @@
 <script setup lang="ts">
 const nav = ref([
   { link: "/about", text: "О нас" },
-  { link: "#", text: "Команда" },
-  { link: "#", text: "Услуги" },
-  { link: "#", text: "Вопросы" },
-  { link: "#", text: "Контакты" },
+  { link: "/services", text: "Услуги" },
+  { link: "#faq", text: "Вопросы" },
+  { link: "#contacts", text: "Контакты" },
 ]);
 
 const isMenuOpen = ref(false);
+const { lock, unlock } = useLockScroll();
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+  isMenuOpen.value ? lock() : unlock();
 };
 </script>
 
@@ -23,11 +24,31 @@ const toggleMenu = () => {
 
       <nav class="hidden md:block">
         <ul class="text-[1.6rem] flex gap-[2.4rem]">
-          <li v-for="item in nav" :key="item.link">
+          <li>
+            <NuxtLink to="/about" class="hover:text-[--accent] cursor-pointer"
+              >О нас</NuxtLink
+            >
+          </li>
+          <li>
             <NuxtLink
-              :to="item.link"
+              to="/services"
               class="hover:text-[--accent] cursor-pointer"
-              >{{ item.text }}</NuxtLink
+              >Услуги</NuxtLink
+            >
+          </li>
+          <li>
+            <NuxtLink
+              to="#faq"
+              prefetch-on="interaction"
+              class="hover:text-[--accent] cursor-pointer"
+              >Вопросы</NuxtLink
+            >
+          </li>
+          <li>
+            <NuxtLink
+              to="#contacts"
+              class="hover:text-[--accent] cursor-pointer"
+              >Контакты</NuxtLink
             >
           </li>
         </ul>
