@@ -83,20 +83,7 @@ const services = ref<ServiceCard[]>([
   },
 ]);
 
-const isDesktop = ref<boolean>(false);
-
-const checkScreenWidth = () => {
-  isDesktop.value = window.innerWidth > 1023;
-};
-
-onMounted(() => {
-  checkScreenWidth();
-  window.addEventListener("resize", checkScreenWidth);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener("resize", checkScreenWidth);
-});
+const isDesktop = ref<boolean>(true);
 </script>
 
 <template>
@@ -113,8 +100,7 @@ onBeforeUnmount(() => {
         </Heading>
 
         <div
-          v-if="isDesktop"
-          class="flex flex-col gap-[3.2rem] max-[1023px]:items-center w-full px-[1.6rem] md:px-[3.2rem]"
+          class="flex flex-col gap-[3.2rem] max-[1023px]:items-center w-full px-[1.6rem] md:px-[3.2rem] max-[1023px]:hidden"
         >
           <div class="grid grid-cols-4 grid-rows-3 gap-[1.2rem] w-full">
             <ServiceCard
@@ -125,7 +111,9 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <ServiceSlider v-if="!isDesktop" :services="services" />
+        <div class="min-[1023px]:hidden w-full">
+          <ServiceSlider :services="services" />
+        </div>
 
         <div
           class="flex flex-col gap-[3.2rem] max-[1023px]:items-center w-full px-[1.6rem] md:px-[3.2rem]"
